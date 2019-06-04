@@ -1,6 +1,8 @@
 # Container scripts for external releases
 From: https://android.googlesource.com/platform/external/adt-infra/+/958180293308f4be67f6369acb075503f84a08b1/emu-image/external/
 
+Notes after first trial: It seems this is meant to be run on a linux host machine. It also grabs username and appends hardcoded email for Maintainer of Dockerfile. 
+
 This is a set of minimal scripts to run the emulator in a container for various
 systems such as Docker. A cloud is not used; only the
 emulator and system image zip files are needed.
