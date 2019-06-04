@@ -114,7 +114,7 @@ dockerfile_out_template = Environment(loader=BaseLoader).from_string(emu_templat
 with open(dockerfile_out_path, 'w') as dfile:
     dfile.write(
         dockerfile_out_template.render(
-            user='{}@google.com'.format(os.environ["USER"]),
+            user='{}@willowtreeapps.com'.format(os.environ["USER"]),
             tag="IMAGE_TEST_TAG",
             api="TEST_API",
             abi="TEST_ABI",
