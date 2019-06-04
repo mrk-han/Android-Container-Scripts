@@ -7,6 +7,8 @@ This is a set of minimal scripts to run the emulator in a container for various
 systems such as Docker. A cloud is not used; only the
 emulator and system image zip files are needed.
 
+It utilizes `adb connect` and gRPC to communicate with the Emulator when inside the Docker Container
+
 This was adapted from Google's published Android Container Scripts folder, in which they seek to provide better support for Emulators on CI. They have an internal script for setting up Emulators in Containers, and this was loosely adapted to be "external" facing. 
 
 After the container images are built, they can be separately pushed to
