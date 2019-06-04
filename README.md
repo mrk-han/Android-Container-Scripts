@@ -38,9 +38,17 @@ will query the currently published Android SDK and output URLs for the zip files
 - Available and currently Docker-compatible system images
 - Currently published and advertised emulator binaries
 
-For each system image, the API level, variant, ABI, and URL are displayed.  For
-each emulator, the update channel (stable vs canary), version, host os, and URL
-are displayed.
+For each system image (SYSIMG):
+- variant
+- API level
+- ABI
+- URL 
+
+For each emulator (EMU):
+- the update channel (stable vs canary)
+- version
+- host os
+- URL
 
 Example output:
 
@@ -61,8 +69,8 @@ Example output:
     SYSIMG google_apis 26 O x86_64 https://dl.google.com/android/repository/sys-img/google_apis/x86_64-26_r13.zip
     SYSIMG google_apis 28 P x86_64 https://dl.google.com/android/repository/sys-img/google_apis/x86_64-28_r09.zip
     SYSIMG google_apis 28 Q x86_64 https://dl.google.com/android/repository/sys-img/google_apis/x86_64-Q_r04.zip
-    SYSIMG google_apis_playstore 28 P x86_64 https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-28_r08.p
-    SYSIMG google_apis_playstore 28 Q x86_64 https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-Q_r04.zp
+    SYSIMG google_apis_playstore 28 P x86_64 https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-28_r08.zip
+    SYSIMG google_apis_playstore 28 Q x86_64 https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-Q_r04.zip
     EMU stable 29.0.11 windows https://dl.google.com/android/repository/emulator-windows-5598178.zip
     EMU stable 29.0.11 macosx https://dl.google.com/android/repository/emulator-darwin-5598178.zip
     EMU stable 29.0.11 linux https://dl.google.com/android/repository/emulator-linux-5598178.zip
@@ -71,8 +79,15 @@ Example output:
     EMU canary 29.0.12 macosx https://dl.google.com/android/repository/emulator-darwin-5613046.zip
     EMU canary 29.0.12 linux https://dl.google.com/android/repository/emulator-linux-5613046.zip
 
-One can then use tools like `wget` or a browser to download a desired emulator
-and system image.  After the two are obtained, we can build a Docker image.
+One can then use tools like `wget` or a browser to download a desired emulator(EMU)
+and system image(SYSIMG).  After the two are obtained, we can build a Docker image.
+
+```
+wget {SYSIMG URL}
+wget {EMU URL}
+```
+
+^ This will install the EMU and SYSIMG in the current directory, to later be used in the emu_docker.py file.
 
 ## Building the Docker image: Setting up the source dir
 
