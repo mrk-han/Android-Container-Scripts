@@ -2,23 +2,30 @@
 From: https://android.googlesource.com/platform/external/adt-infra/+/958180293308f4be67f6369acb075503f84a08b1/emu-image/external/
 
 This is a set of minimal scripts to run the emulator in a container for various
-systems such as Docker, for external consumption. Acloud is not used; only the
+systems such as Docker. A cloud is not used; only the
 emulator and system image zip files are needed.
 
-We do similar things as the internal facing scripts, but is meant for external
-release.  When the container images are built, they can be separately pushed to
+This was adapted from Google's published Android Container Scripts folder, in which they seek to provide better support for Emulators on CI. They have an internal script for setting up Emulators in Containers, and this was loosely adapted to be "external" facing. 
+
+After the container images are built, they can be separately pushed to
 some location such as docker hub or even dl.google.com.
 
 # Docker
 
-We have two scripts that work together to provide emulator docker images:
+There are two scripts that work together to provide emulator docker images:
 
     emu_docker.py
     emu_download_menu.py
 
-`emu_docker.py` sets up a Docker image source directory with a Dockerfile that is buildable and runnable as a Docker image, given a Linux emulator zip file, a system image zip file, and a docker repo name (currently unused; any name will do).
+`emu_docker.py` sets up:
+- A Docker image source directory with a Dockerfile that is buildable and runnable as a Docker image when given a:
+    - A Linux emulator zip file
+    - A system image zip file
+    - A docker repo name (currently unused; any name will do).
 
-`emu_download_menu.py` lists a set of publically available Android Emulator system images and emulators along with their URLs, which makes it easier to download zip files for user with `emu_docker.py`.
+`emu_download_menu.py` contains: 
+- A set of publically available Android Emulator system images and emulators along with their URLs
+    - This makes it easier to download zip files with `emu_docker.py`.
 
 ## Obtaining URLs for emulator/system image zip files
 
