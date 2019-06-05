@@ -123,11 +123,12 @@ It does the following:
 
     docker run -e "ADBKEY=$(cat ~/.android/adbkey)" --privileged  --publish 5556:5556/tcp --publish 5555:5555/tcp <docker-image-id>
 
+The command line parameters mean the following:
 
-- Sets up the ADB key, assuming one exists at ~/.android/adbkey
-- Uses `--privileged` to have CPU acceleration
-- Starts the emulator in the docker image with its gRPC service, forwarding the host ports 5556/5554 to container ports 5554/5554 respectively.
-- The gRPC service is used to communicate with the running emulator inside the container.
+-e "ADBKEY=$(cat ~/.android/adbkey)" Set the environment variable ADBKEY to contain the private key used by your current adb install. Usually this private key resides in ~/.android/adbkey
+--privileged The emulator needs access to kvm, hence you will need to pass the --privileged flag. Without docker will not have access to KVM and you will not be able run the emulator.
+--publish 5556:5556/tcp make the internal port 5556 in the docker container visible to the outside world at port 5556. This is the gRPC port, that can be used to interact with the emulator. The gRPC service is used to communicate with the running emulator inside the container.
+--publish 5555:5555/tcp make the internal port 5555 in the docker container visible to the outside world at port 5555. This is the ADB port that can be used to interact with the emulator.
 
 ## Communicating with the emulator in the container
 
