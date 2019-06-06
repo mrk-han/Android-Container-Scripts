@@ -1,19 +1,14 @@
-# Container Scripts for (external)
+# Python Scripts to Create, Run, Interact with and Observe an Android Emulator in Docker
 
-From: https://android.googlesource.com/platform/external/adt-infra/+/958180293308f4be67f6369acb075503f84a08b1/emu-image/external/
+Forked/Adapted from: https://android.googlesource.com/platform/external/adt-infra/+/958180293308f4be67f6369acb075503f84a08b1/emu-image/external/
 
-Notes after first trial: It seems this is meant to be run on a linux host machine. It also grabs username and appends hardcoded email for Maintainer of Dockerfile.
+This is a set of minimal scripts to run the emulator in a container for various systems such as Docker. A cloud is not used; only the emulator and system image zip files are needed.
 
-This is a set of minimal scripts to run the emulator in a container for various
-systems such as Docker. A cloud is not used; only the
-emulator and system image zip files are needed.
+It utilizes `adb connect` and gRPC to communicate with the Emulator when inside the Docker Container.
 
-It utilizes `adb connect` and gRPC to communicate with the Emulator when inside the Docker Container
+This was adapted from Google's published Android Container Scripts folder, in which they seek to provide better support for Emulators on CI. They have an internal script for setting up Emulators in Containers, and this was loosely adapted to be "external" facing.
 
-This was adapted from Google's published Android Container Scripts folder, in which they seek to provide better support for Emulators on CI. They have an internal script for setting up Emulators in Containers, and this was loosely adapted to be "external" facing. 
-
-After the container images are built, they can be separately pushed to
-some location such as docker hub or even dl.google.com.
+After the container images are built, they can be separately pushed to some location such as docker hub.
 
 ## Docker
 
@@ -29,7 +24,7 @@ There are two scripts that work together to provide emulator docker images:
   - A system image zip file
   - A docker repo name (currently unused; any name will do).
 
-`emu_download_menu.py` contains: 
+`emu_download_menu.py` contains:
 
 - A set of publically available Android Emulator system images and emulators along with their URLs
   - This makes it easier to download zip files with `emu_docker.py`.
@@ -186,3 +181,7 @@ To stop, hit Ctrl-C in the terminal where `make develop` was issued, then issue:
     make stop
 
 TODO: We are also working on a more isolated solution via envoy, nginx, and `docker-compose`. See https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-grpc/docs/grpc-samples/js/docker/
+
+### *Notes*
+
+- It seems that currently this is meant to be run on a linux host machine and with a linux emulator. It also grabs username and appends hardcoded email for Maintainer of Dockerfile.
